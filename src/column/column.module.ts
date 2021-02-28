@@ -10,6 +10,5 @@ import { Column, ColumnSchema } from './schemas/column.schema';
   ],
   controllers: [ColumnController],
   providers: [ColumnService],
-  exports: [ColumnService],
 })
 export class ColumnModule { }

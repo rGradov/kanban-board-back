@@ -7,6 +7,7 @@ import { CommentsModule } from './comments/comments.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { Service } from './column-tem/.service';
 import MongoURI from './keys';
 
 @Module({
@@ -15,8 +16,10 @@ import MongoURI from './keys';
     UsersModule,
     AuthModule,
     ColumnModule,
+    ColumnItemModule,
+    CommentsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, Service],
 })
 export class AppModule { }

@@ -9,4 +9,4 @@ export class ColumnItem extends Document {
   title: string;
 }
 
-export const UserSchema = SchemaFactory.createForClass(ColumnItem);
+export const ColumnItemSchema = SchemaFactory.createForClass(ColumnItem);
