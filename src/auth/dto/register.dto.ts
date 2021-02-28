@@ -1,4 +1,5 @@
-export interface UserInt {
+export class RegisterDto {
   email: string;
+
   password: string;
 }
