@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -13,6 +14,9 @@ import { JwtStrategy } from './jwt.strategy';
     JwtModule.register({
       secret: `secretKey`,
       signOptions: { expiresIn: '1d' },
+    }),
+    MulterModule.register({
+      dest: './files',
     }),
   ],
   providers: [AuthService, JwtStrategy],
