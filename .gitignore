@@ -27,6 +27,8 @@ lerna-debug.log*
 *.sublime-workspace
 #Keys
 srs/Keys.ts
+#img
+./files
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
