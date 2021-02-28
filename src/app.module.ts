@@ -5,7 +5,7 @@ import { ColumnModule } from './column/column.module';
 import { ColumnItemModule } from './column-item/column-item.module';
 import { CommentsModule } from './comments/comments.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import MongoURI from './keys';
+import { MongoURI } from './keys';
 
 @Module({
   imports: [
