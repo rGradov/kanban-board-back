@@ -1,4 +1,3 @@
-import { UpdateColumnDto } from './dto/update-column.dto';
 import { CreateColumnDto } from './dto/create-column.dto';
 import { ColumnService } from './column.service';
 import {
@@ -7,7 +6,6 @@ import {
   Delete,
   Get,
   HttpCode,
-  HttpStatus,
   Param,
   Post,
   Put,
@@ -30,11 +28,10 @@ export class ColumnController {
     return await this.columnService.getCurrentItem(id);
   }
   @Post('post')
-  async createColumn(@Body() column: CreateColumnDto) {
+  async createColumn(@Body() column: Partial<Columns>) {
     return await this.columnService.createColumn(column);
   }
   @Delete(':id')
-  @HttpCode(204)
   async deleteColumn(@Param('id') id: string) {
     return await this.columnService.deleteColum(id);
   }

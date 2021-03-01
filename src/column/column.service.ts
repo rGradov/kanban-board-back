@@ -21,7 +21,7 @@ export class ColumnService {
     });
     return result.items;
   }
-  async createColumn(column: CreateColumnDto): Promise<Columns> {
+  async createColumn(column: Partial<Columns>): Promise<Columns> {
     const result = await this.repo.save(new Columns(column));
     return await result;
   }

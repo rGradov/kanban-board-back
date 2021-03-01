@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-// import { ColumnItemModule } from './column-item/column-item.module';
+import { ColumnItemModule } from './column-item/column-item.module';
 // import { CommentsModule } from './comments/comments.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
@@ -23,7 +23,7 @@ import { ColumnModule } from './column/column.module';
     UsersModule,
     AuthModule,
     ColumnModule,
-    // ColumnItemModule,
+    ColumnItemModule,
     // CommentsModule,
   ],
   controllers: [AppController],
