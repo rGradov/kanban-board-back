@@ -15,7 +15,6 @@ import {
   Res,
 } from '@nestjs/common';
 import { AuthResponseType } from './interface/auth-response.interface';
-import { User } from 'src/users/schemas/user.schemas';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { editFileName, imageFileFilter } from 'src/utils/file-uploading.utils';
@@ -48,7 +47,7 @@ export class AuthController {
     const response = {
       filename: file.filename,
     };
-    return response;
+    return await response;
   }
   @Get(':imgpath')
   seeUploadedFile(@Param('imgpath') image, @Res() res) {

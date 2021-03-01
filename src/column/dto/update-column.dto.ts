@@ -1,6 +1,5 @@
-
 export class UpdateColumnDto {
-  title: string;
-  ColumnId: number;
-  color: string;
+  readonly title: string;
+  readonly color: string;
+  readonly items: any;
 }

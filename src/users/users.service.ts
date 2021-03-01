@@ -1,24 +1,27 @@
 import { RegisterDto } from './../auth/dto/register.dto';
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { User } from './schemas/user.schemas';
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from './user.entity';
+import { MongoRepository } from 'typeorm';
+import { ObjectID } from 'mongodb';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private userModel: Model<User>) { }
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepository: MongoRepository<User>,
+  ) { }
 
-  async getAllUsers(): Promise<User[]> {
-    return await this.userModel.find().exec();
+  async getAllUsers(): Promise<any> {
+    return await this.userRepository.find();
   }
-  async getOneUser(id: string): Promise<User> {
-    return await this.userModel.findById(id);
+  async getOneUser(id: string): Promise<any> {
+    return await this.userRepository.findOne(id);
   }
-  async getOneUserByEmail(email: string): Promise<User | undefined> {
-    return await this.userModel.findOne({ email: email });
+  async getOneUserByEmail(email: string): Promise<any | undefined> {
+    return await this.userRepository.findOne({ email: email });
   }
-  async registerUser(userData: RegisterDto): Promise<any> {
-    const user = new this.userModel(userData);
-    return user.save()
+  async registerUser(user: Partial<User>): Promise<any> {
+    return this.userRepository.save(new User(user));
   }
 }
