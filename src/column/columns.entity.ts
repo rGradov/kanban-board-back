@@ -1,5 +1,4 @@
-import { ColumnItem } from 'src/column-item/column-item.entity';
-import { Entity, ObjectIdColumn, Column, OneToMany, ObjectID } from 'typeorm';
+import { Entity, ObjectIdColumn, Column, ObjectID } from 'typeorm';
 
 @Entity()
 export class Columns {
@@ -8,9 +7,7 @@ export class Columns {
   @Column()
   title: string;
   @Column()
-  color: string;
-  @OneToMany(() => ColumnItem, (columnitem) => columnitem.column)
-  items: ColumnItem[];
+  pos: string;
   constructor(Columns?: Partial<Columns>) {
     Object.assign(this, Columns);
   }

@@ -1,15 +1,21 @@
-import { Columns } from './../column/columns.entity';
-import { Entity, ObjectIdColumn, Column, ManyToOne, ObjectID } from 'typeorm';
+import { Entity, ObjectIdColumn, Column, ObjectID } from 'typeorm';
 
 @Entity()
-export class ColumnItem {
+export class Item {
   @ObjectIdColumn()
   id: ObjectID;
   @Column()
   title: string;
-  @ManyToOne(() => Columns, (columnitem) => columnitem.items)
-  column: Columns;
-  constructor(ColumnItem?: Partial<ColumnItem>) {
-    Object.assign(this, ColumnItem);
+  @Column()
+  tag: string;
+  @Column()
+  description: string;
+  @Column()
+  columnId: string;
+  @Column()
+  pos: string;
+
+  constructor(Item?: Partial<Item>) {
+    Object.assign(this, Item);
   }
 }

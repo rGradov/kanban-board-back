@@ -49,6 +49,7 @@ export class AuthController {
     };
     return await response;
   }
+  //перекинуть
   @Get(':imgpath')
   seeUploadedFile(@Param('imgpath') image, @Res() res) {
     return res.sendFile(image, { root: './files' });
