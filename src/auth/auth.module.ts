@@ -15,9 +15,6 @@ import { MulterModule } from '@nestjs/platform-express';
       secret: `secretKey`,
       signOptions: { expiresIn: '1d' },
     }),
-    MulterModule.register({
-      dest: './files',
-    }),
   ],
   providers: [AuthService, JwtStrategy],
   controllers: [AuthController],

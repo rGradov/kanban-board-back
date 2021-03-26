@@ -7,10 +7,13 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { Columns } from './columns.entity';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('api/columns')
+@UseGuards(JwtAuthGuard)
 export class ColumnController {
   constructor(private readonly columnService: ColumnService) { }
   @Get('/last')

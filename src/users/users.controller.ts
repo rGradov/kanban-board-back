@@ -1,14 +1,14 @@
 import { JwtAuthGuard } from './../auth/jwt-auth.guard';
 import { UsersService } from './users.service';
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, UseGuards, Request } from '@nestjs/common';
 import { User } from './user.entity';
 
+@UseGuards(JwtAuthGuard)
 @Controller('api/users')
 export class UsersController {
   constructor(private readonly userService: UsersService) { }
 
   @Get()
-  @UseGuards(JwtAuthGuard)
   getAll(): Promise<User[]> {
     return this.userService.getAllUsers();
   }

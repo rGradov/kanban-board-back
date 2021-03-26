@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { MongoRepository } from 'typeorm';
 import { Item } from '../column-item.entity';
 import { ObjectID } from 'mongodb';
+import { itemDto } from '../dto/item.dto';
 
 @Injectable()
 export class ColumnItemService {
@@ -11,6 +12,12 @@ export class ColumnItemService {
     private repo: MongoRepository<Item>,
   ) { }
   async createItem(item: Partial<Item>): Promise<Item> {
+    const name = await this.repo.findOne({
+      where: { columnId: item.columnId, title: item.title },
+    });
+    if (name) {
+      throw new NotFoundException();
+    }
     const result = await this.repo.save(new Item(item));
     return await result;
   }
@@ -46,5 +53,8 @@ export class ColumnItemService {
     const items = await this.repo.find({ order: { pos: 'ASC' } });
     const response = { id: items[items.length - 1].pos };
     return response;
+  }
+  async getCurrentItem(id: string): Promise<any> {
+    return await this.repo.findOne(id);
   }
 }

@@ -14,6 +14,10 @@ export class Item {
   columnId: string;
   @Column()
   pos: string;
+  @Column()
+  img: string;
+  @Column()
+  date: Date;
 
   constructor(Item?: Partial<Item>) {
     Object.assign(this, Item);

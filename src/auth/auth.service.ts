@@ -39,7 +39,10 @@ export class AuthService {
       throw new UnauthorizedException('email alredy taken');
     }
     user.password = await this.generateHash(user.password);
-    return this.usersService.registerUser(user);
+    await this.usersService.registerUser(user);
+
+    const token = await this.generateToken(user);
+    return { token };
   }
 
   private async generateHash(pswd: string): Promise<string> {

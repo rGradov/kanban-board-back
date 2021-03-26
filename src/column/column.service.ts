@@ -19,6 +19,10 @@ export class ColumnService {
     return result;
   }
   async createColumn(column: Partial<Columns>): Promise<Columns> {
+    const name = await this.repo.findOne({ where: { title: column.title } });
+    if (name) {
+      throw new NotFoundException();
+    }
     const result = await this.repo.save(new Columns(column));
     return await result;
   }
